@@ -283,6 +283,7 @@ public class GraphController {
         azurirajSve();
     }
     public void bfs(ActionEvent actionEvent){
+        if(graph.getVertices().size()==0)return;
         Stage secondaryStage = new Stage();
         StartVertexController svc = new StartVertexController(graph.getVertices());
         FXMLLoader loader=null;
@@ -305,6 +306,7 @@ public class GraphController {
 
                     @Override
                     public void run() {
+                        azurirajSve();
                         //THE ACTUAL BFS ALGORITHM BEGINS HERE
                         Vertex pocetak = svc.dajStart();
                         HashMap<Vertex, Boolean> bio= new HashMap<>();
@@ -366,6 +368,7 @@ public class GraphController {
     }
 
     public void dfs(ActionEvent actionEvent){
+        if(graph.getVertices().size()==0)return;
         Stage secondaryStage = new Stage();
         StartVertexController svc = new StartVertexController(graph.getVertices());
         FXMLLoader loader=null;
@@ -388,6 +391,7 @@ public class GraphController {
 
                     @Override
                     public void run() {
+                        azurirajSve();
                         Vertex pocetak = svc.dajStart();
                         List<Vertex<String>> vertices= graph.getVertices();
                         List<Edge<String>> edges = graph.getEdges();
