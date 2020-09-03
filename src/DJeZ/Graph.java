@@ -2,6 +2,7 @@ package DJeZ;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Graph<Oznaka> {
     List<Vertex<Oznaka>> vertices;
@@ -14,35 +15,18 @@ public class Graph<Oznaka> {
 
     public boolean addVertex(Oznaka o){
         if(vertices.contains(new Vertex<>(o)))return false;
-        vertices.add(new Vertex<Oznaka>(o));
+        vertices.add(new Vertex<>(o));
         return true;
     }
     public void resetAllVertices(){
-        for(int i = 0; i < vertices.size(); i++){
-            vertices.get(i).resetBoja();
+        for (Vertex<Oznaka> vertex : vertices) {
+            vertex.resetBoja();
         }
     }
     public void resetAllEdges(){
-        for(int i = 0; i < edges.size(); i++){
-            edges.get(i).resetBoja();
+        for (Edge<Oznaka> edge : edges) {
+            edge.resetBoja();
         }
-    }
-    public int getIndexOfVertex(Vertex v){
-        for(int i = 0; i < vertices.size(); i++){
-            if(v.equals(vertices.get(i)))return i;
-        }
-        return -1;
-    }
-    public Edge<Oznaka> getEdge(Vertex<Oznaka> pol, Vertex<Oznaka> dol){
-        for(Edge<Oznaka> e: edges){
-            if(e.equals(new Edge<Oznaka>(pol,dol,0))){
-                return e;
-            }
-        }
-        return null;
-    }
-    public void addEdge(Oznaka polazni, Oznaka dolazni){
-        edges.add(new Edge(polazni,dolazni));
     }
 
     public List<Vertex<Oznaka>> getVertices() {
@@ -69,9 +53,12 @@ public class Graph<Oznaka> {
     }
 
     public Vertex<Oznaka> dajCvor(Vertex<Oznaka> pom){
-        for(int i = 0; i < vertices.size(); i++){
-            if(pom.equals(vertices.get(i)))return vertices.get(i);
+        for (Vertex<Oznaka> vertex : vertices) {
+            if (pom.equals(vertex)) return vertex;
         }
         return null;
+    }
+    public List<Edge<Oznaka>> getEdgesWithStartVertex(Vertex<Oznaka> poc){
+        return edges.stream().filter(e->e.getPolazni().equals(poc)).collect(Collectors.toList());
     }
 }

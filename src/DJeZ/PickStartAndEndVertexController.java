@@ -10,11 +10,12 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
-public class StartVertexController {
+public class PickStartAndEndVertexController {
     private ObservableList<Vertex<String>> izbor;
     public ChoiceBox start;
+    public ChoiceBox end;
 
-    StartVertexController(List<Vertex<String>> lista){
+    PickStartAndEndVertexController(List<Vertex<String>> lista){
         izbor = FXCollections.observableArrayList(lista);
     }
 
@@ -22,6 +23,8 @@ public class StartVertexController {
     public void initialize(){
         start.setItems(izbor);
         start.setValue(izbor.get(0));
+        end.setItems(izbor);
+        end.setValue(izbor.get(0));
     }
 
     public void okAction(ActionEvent actionEvent) {
@@ -32,12 +35,14 @@ public class StartVertexController {
 
     public void cancelAction(ActionEvent actionEvent) {
         start.setValue(null);
+        end.setValue(null);
         Node n = (Node) actionEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
     }
 
-    public Vertex<String> dajStart(){
+    public Vertex dajStart(){
         return (Vertex) start.getValue();
     }
+    public Vertex dajEnd(){return (Vertex)start.getValue();}
 }

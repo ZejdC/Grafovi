@@ -30,6 +30,7 @@
             <Button mnemonicParsing="false" onAction="#addEdge" prefHeight="35.0" prefWidth="150.0" text="%addEdge" />
             <Button mnemonicParsing="false" onAction="#bfs" prefHeight="35.0" prefWidth="150.0" text="BFS" />
             <Button mnemonicParsing="false" onAction="#dfs" prefHeight="35.0" prefWidth="150.0" text="DFS" />
+            <CheckBox fx:id="latex" mnemonicParsing="false" text="Latex" />
          </children>
          <padding>
             <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />

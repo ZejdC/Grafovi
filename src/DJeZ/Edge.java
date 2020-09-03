@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 
 import java.util.Objects;
 
-public class Edge<Oznaka> {
+public class Edge<Oznaka> implements Comparable{
     private Vertex<Oznaka> polazni;
     private Vertex<Oznaka> dolazni;
     Color color;
@@ -72,5 +72,12 @@ public class Edge<Oznaka> {
     @Override
     public String toString() {
         return polazni.toString()+"-"+dolazni.toString();
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if(this.equals(o))return 0;
+        if(getTezina()>((Edge)o).getTezina())return 1;
+        return -1;
     }
 }
